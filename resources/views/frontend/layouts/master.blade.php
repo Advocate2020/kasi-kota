@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/venobox.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/jquery.exzoom.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('frontend/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
     <!-- <link rel="stylesheet" href="css/rtl.css"> -->
@@ -73,10 +73,31 @@
 <script src="{{ asset('frontend/js/wow.min.js')}}"></script>
 <!-- ex zoom js -->
 <script src="{{ asset('frontend/js/jquery.exzoom.js')}}"></script>
-
+<!-- ex zoom js -->
+<script src="{{ asset('frontend/js/toastr.min.js')}}"></script>
 <!--main/custom js-->
 <script src="{{ asset('frontend/js/main.js')}}"></script>
+<!-- show dynamic validation message-->
+<script>
+    toastr.options.progressBar = true;
 
+    @if ($errors->any())
+    @foreach ($errors->all() as $error)
+    toastr.error("{{ $error }}")
+    @endforeach
+    @endif
+
+    // Set csrf at ajax header
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(document).ready(function(){
+        $('.button-click').click();
+    })
+</script>
 </body>
 
 </html>
