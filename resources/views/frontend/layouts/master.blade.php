@@ -87,6 +87,19 @@
     @endforeach
     @endif
 
+    @if($messages = session('messages') )
+
+    @if( is_array($messages) )
+    @foreach ( $messages as $message )
+    toastr.success('{{ $message }}')
+    @endforeach
+    @else
+    toastr.success('{{ $messages }}')
+
+    @endif
+</script>
+@endif
+
     // Set csrf at ajax header
     $.ajaxSetup({
         headers: {
