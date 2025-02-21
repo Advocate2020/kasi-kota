@@ -78,27 +78,25 @@
 <!--main/custom js-->
 <script src="{{ asset('frontend/js/main.js')}}"></script>
 <!-- show dynamic validation message-->
+<!-- show dynamic validation message-->
 <script>
     toastr.options.progressBar = true;
 
     @if ($errors->any())
-    @foreach ($errors->all() as $error)
-    toastr.error("{{ $error }}")
-    @endforeach
+       @foreach ($errors->all() as $error)
+         toastr.error("{{ $error }}")
+       @endforeach
     @endif
 
-    @if($messages = session('messages') )
-
-    @if( is_array($messages) )
-    @foreach ( $messages as $message )
-    toastr.success('{{ $message }}')
-    @endforeach
-    @else
-    toastr.success('{{ $messages }}')
-
+    @if($messages = session('messages'))
+       @if(is_array($messages))
+           @foreach ($messages as $message)
+             toastr.success('{{ $message }}')
+           @endforeach
+       @else
+             toastr.success('{{ $messages }}')
+       @endif
     @endif
-</script>
-@endif
 
     // Set csrf at ajax header
     $.ajaxSetup({

@@ -16,14 +16,12 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Check if the user is authenticated
-        if ($request->user() && $request->user()->isAdmin()) {
+        // Check if the user is authenticated and is an admin
+        if (Auth::check() && $request->user()->isAdmin()) {
             return $next($request); // Proceed if the user is an admin
         }
 
         // Redirect to user dashboard if the user is not an admin
-        return to_route('user.dashboard');
-
-
+        return redirect()->route('user.dashboard');
     }
 }
