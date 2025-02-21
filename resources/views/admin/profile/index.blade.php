@@ -17,10 +17,15 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <div id="image-preview" class="image-preview">
-                                <label for="image-upload" id="image-label">Choose File</label>
-                                <input type="file" name="avatar" id="image-upload" />
-                              </div>
+                            <div class="dasboard_header">
+                                <div class="dasboard_header_img">
+                                    <img src="{{ asset(auth()->user()->avatar) }}" alt="user" class="img-fluid w-100">
+                                    <label for="upload"><i class="fa fa-camera fa-2x" aria-hidden="true"></i></label>
+                                    <input type="file" id="upload" name="avatar" hidden="" onchange="previewImage(event)">
+                                </div>
+
+                            </div>
+
                         </div>
                         <div class="form-group">
                             <label>Name</label>

@@ -30,9 +30,9 @@ class ProfileController extends Controller
         $user->avatar = $imagePath ?? $user->avatar;
         $user->save();
 
-        toastr('Updated Successfully!', 'success');
 
-        return redirect()->back();
+
+        return redirect()->back()->with('messages', 'Updated Successfully!');
     }
 
     function updatePassword(ProfilePasswordUpdateRequest $request) : RedirectResponse {
