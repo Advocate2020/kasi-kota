@@ -25,8 +25,8 @@ class   User extends Authenticatable
         'name',
         'surname',
         'email',
-
         'password',
+        'phone',
     ];
 
     public function role(): BelongsTo

@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/toastr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/responsive.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css"/>
+
     <!-- <link rel="stylesheet" href="css/rtl.css"> -->
 </head>
 
@@ -77,6 +79,18 @@
 <script src="{{ asset('frontend/js/toastr.min.js')}}"></script>
 <!--main/custom js-->
 <script src="{{ asset('frontend/js/main.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+<script>
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        preferredCountries: ["za"],
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+
+
+</script>
+
 <!-- show dynamic validation message-->
 <!-- show dynamic validation message-->
 <script>

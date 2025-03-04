@@ -32,6 +32,10 @@
                             <input type="text" class="form-control" name="name" value="{{ auth()->user()->name }}">
                         </div>
                         <div class="form-group">
+                            <label>Surname</label>
+                            <input type="text" class="form-control" name="surname" value="{{ auth()->user()->surname }}">
+                        </div>
+                        <div class="form-group">
                             <label>Email</label>
                             <input type="text" class="form-control" name="email" value="{{ auth()->user()->email }}">
                         </div>

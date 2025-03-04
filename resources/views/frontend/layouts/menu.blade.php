@@ -1,38 +1,9 @@
-{{--<!--=============================--}}
-{{--    TOPBAR START--}}
-{{--==============================-->--}}
-{{--<section class="fp__topbar">--}}
-{{--    <div class="container">--}}
-{{--        <div class="row">--}}
-{{--            <div class="col-xl-6 col-md-8">--}}
-{{--                <ul class="fp__topbar_info d-flex flex-wrap">--}}
-{{--                    <li><a href="mailto:example@gmail.com"><i class="fas fa-envelope"></i> kasifood@gmail.com</a>--}}
-{{--                    </li>--}}
-{{--                    <li><a href="callto:123456789"><i class="fas fa-phone-alt"></i> +27435678096</a></li>--}}
-{{--                </ul>--}}
-{{--            </div>--}}
-{{--            <div class="col-xl-6 col-md-4 d-none d-md-block">--}}
-{{--                <ul class="topbar_icon d-flex flex-wrap">--}}
-{{--                    <li><a href="#"><i class="fab fa-facebook-f"></i></a> </li>--}}
-{{--                    <li><a href="#"><i class="fab fa-twitter"></i></a> </li>--}}
-{{--                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a> </li>--}}
-{{--                    <li><a href="#"><i class="fab fa-behance"></i></a> </li>--}}
-{{--                </ul>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</section>--}}
-{{--<!--=============================--}}
-{{--    TOPBAR END--}}
-{{--==============================-->--}}
-
-
 <!--=============================
     MENU START
 ==============================-->
 <nav class="navbar navbar-expand-lg main_menu">
     <div class="container">
-        <a class="navbar-brand" href="index.html">
+        <a class="navbar-brand" href="{{ url('/') }}">
             <img src="{{ asset('frontend/images/kasi-kota-logo.png') }}" alt="FoodPark" class="img-fluid">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -42,7 +13,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav m-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="about.html">about</a>
@@ -53,28 +24,28 @@
                 <li class="nav-item">
                     <a class="nav-link" href="chefs.html">chefs</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">pages <i class="far fa-angle-down"></i></a>
-                    <ul class="droap_menu">
-                        <li><a href="menu_details.html">menu details</a></li>
-                        <li><a href="blog_details.html">blog details</a></li>
-                        <li><a href="cart_view.html">cart view</a></li>
-                        <li><a href="check_out.html">checkout</a></li>
-                        <li><a href="payment.html">payment</a></li>
-                        <li><a href="testimonial.html">testimonial</a></li>
-                        <li><a href="search_menu.html">search result</a></li>
-                        <li><a href="404.html">404/Error</a></li>
-                        <li><a href="faq.html">FAQs</a></li>
-                        <li><a href="sign_in.html">sign in</a></li>
-                        <li><a href="sign_up.html">sign up</a></li>
-                        <li><a href="forgot_password.html">forgot password</a></li>
-                        <li><a href="privacy_policy.html">privacy policy</a></li>
-                        <li><a href="terms_condition.html">terms and condition</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="blogs.html">blog</a>
-                </li>
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="#">pages <i class="far fa-angle-down"></i></a>--}}
+{{--                    <ul class="droap_menu">--}}
+{{--                        <li><a href="menu_details.html">menu details</a></li>--}}
+{{--                        <li><a href="blog_details.html">blog details</a></li>--}}
+{{--                        <li><a href="cart_view.html">cart view</a></li>--}}
+{{--                        <li><a href="check_out.html">checkout</a></li>--}}
+{{--                        <li><a href="payment.html">payment</a></li>--}}
+{{--                        <li><a href="testimonial.html">testimonial</a></li>--}}
+{{--                        <li><a href="search_menu.html">search result</a></li>--}}
+{{--                        <li><a href="404.html">404/Error</a></li>--}}
+{{--                        <li><a href="faq.html">FAQs</a></li>--}}
+{{--                        <li><a href="sign_in.html">sign in</a></li>--}}
+{{--                        <li><a href="sign_up.html">sign up</a></li>--}}
+{{--                        <li><a href="forgot_password.html">forgot password</a></li>--}}
+{{--                        <li><a href="privacy_policy.html">privacy policy</a></li>--}}
+{{--                        <li><a href="terms_condition.html">terms and condition</a></li>--}}
+{{--                    </ul>--}}
+{{--                </li>--}}
+{{--                <li class="nav-item">--}}
+{{--                    <a class="nav-link" href="blogs.html">blog</a>--}}
+{{--                </li>--}}
                 <li class="nav-item">
                     <a class="nav-link" href="contact.html">contact</a>
                 </li>
@@ -94,7 +65,15 @@
                     <a class="cart_icon"><i class="fas fa-shopping-basket"></i> <span>5</span></a>
                 </li>
                 <li>
-                    <a href="dashboard.html"><i class="fas fa-user"></i></a>
+                    @if(Auth::check())
+                        @if(Auth::user()->isAdmin() )
+                            <a href="{{ route('admin.dashboard') }}"><i class="fas fa-user"></i></a>
+                        @else
+                            <a href="{{ route('user.dashboard') }}"><i class="fas fa-user"></i></a>
+                        @endif
+                    @else
+                        <a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i></a>
+                    @endif
                 </li>
                 <li>
                     <a class="common_btn" href="#" data-bs-toggle="modal"

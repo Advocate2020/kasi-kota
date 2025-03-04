@@ -26,6 +26,7 @@ class ProfileController extends Controller
         $imagePath = $this->uploadImage($request, 'avatar');
 
         $user->name = $request->name;
+        $user->surname = $request->surname;
         $user->email = $request->email;
         $user->avatar = $imagePath ?? $user->avatar;
         $user->save();
